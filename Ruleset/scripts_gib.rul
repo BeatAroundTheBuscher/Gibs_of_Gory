@@ -1,0 +1,91 @@
+extended:
+  tags:
+    BattleGame:
+      NEXT_HIT_GIBS: int
+    BattleItem:
+      ITEM_IS_GIBBED: int
+    BattleUnit:
+      UNIT_IS_GIBBED: int
+    RuleArmor:
+      FRAMES_TO_SKIP: int
+  scripts:
+    damageUnit:
+      - new: next_hit_gibs
+        offset: 1
+        code: |
+          var int health;
+          var int maxHealth;
+
+          battle_game.setTag Tag.NEXT_HIT_GIBS 0; # sanity check
+
+          unit.getHealth health;
+          unit.getHealthMax maxHealth;
+
+          mul maxHealth -1;
+          sub health to_health;
+
+          if le health maxHealth;
+            battle_game.setTag Tag.NEXT_HIT_GIBS 1;
+            unit.setTag Tag.UNIT_IS_GIBBED 1;
+          end;
+          return;
+
+
+    createItem:
+      - new: tag_item_is_gibbed
+        offset: 1
+        code: |
+          var int temp;
+
+          battle_game.getTag temp Tag.NEXT_HIT_GIBS;
+
+          if gt temp 0;
+            item.setTag Tag.ITEM_IS_GIBBED 1;
+            # battle_game.setTag Tag.NEXT_HIT_GIBS 0; # this limits gibs on multiple targets
+          end;
+          return;
+
+
+    selectItemSprite: # apply tag
+      - new: display_gibbed
+        offset: 10
+        code: |
+          var int temp;
+          item.getTag temp Tag.ITEM_IS_GIBBED;
+
+          if gt temp 0;
+            add sprite_index 1;
+          end;
+          return sprite_index;
+
+
+    selectUnitSprite: # apply tag
+      - new: display_gibbed
+        offset: 10
+        code: |
+          var int temp;
+          var int health;
+          var int framesToSkip;
+
+          var int lowerLimit;
+          var int upperLimit;
+
+          var ptr RuleArmor myArmor;
+
+          unit.getRuleArmor myArmor;
+          myArmor.getTag framesToSkip Tag.FRAMES_TO_SKIP;
+          if eq framesToSkip 0;
+            return sprite_index;
+          end;
+
+          set lowerLimit 264;
+          set upperLimit 266;
+
+          unit.getTag temp Tag.UNIT_IS_GIBBED;
+          unit.getHealth health;
+
+          if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
+            add sprite_index framesToSkip;
+
+          end;
+          return sprite_index;

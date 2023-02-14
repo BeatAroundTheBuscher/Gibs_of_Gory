@@ -1,0 +1,38 @@
+extended:
+  tags:
+    RuleArmor:
+      FRAMES_TO_SKIP: int
+
+armors:
+  - type: STR_NONE_UC
+    spriteSheet: XCOM_SOLDIER_0_GIB.PCK
+    tags:
+      FRAMES_TO_SKIP: 16
+
+  - type: STR_PERSONAL_ARMOR_UC
+    spriteSheet: XCOM_SOLDIER_1_GIB.PCK
+    tags:
+      FRAMES_TO_SKIP: 16
+
+  - type: STR_POWER_SUIT_UC
+    spriteSheet: XCOM_SOLDIER_2_GIB.PCK
+    tags:
+      FRAMES_TO_SKIP: 24
+
+  - type: STR_FLYING_SUIT_UC
+    spriteSheet: XCOM_SOLDIER_2_GIB.PCK
+    tags:
+      FRAMES_TO_SKIP: 24
+
+items:
+  - type: STR_CORPSE
+    floorSprite: 200
+    bigSprite: 200
+
+  - type: STR_CORPSE_ARMOR
+    floorSprite: 202
+    bigSprite: 202
+
+  - type: STR_CORPSE_SUIT
+    floorSprite: 204
+    bigSprite: 204
