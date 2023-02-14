@@ -2,12 +2,23 @@ extended:
   tags:
     BattleGame:
       NEXT_HIT_GIBS: int
+      # 1 gib
+      # 2 charred
     BattleItem:
       ITEM_IS_GIBBED: int
     BattleUnit:
       UNIT_IS_GIBBED: int
     RuleArmor:
-      FRAMES_TO_SKIP: int
+      # FRAMES_TO_SKIP: int
+      GIB_SPRITESHEET: int
+      BURNED_SPRITESHEET: int
+    RuleItem:
+
+      GIB_BIGOB: int
+      GIB_FLOOROB: int
+
+      BURNED_BIGOB: int
+      BURNED_FLOOROB: int
   scripts:
     damageUnit:
       - new: next_hit_gibs
@@ -24,9 +35,19 @@ extended:
           mul maxHealth -1;
           sub health to_health;
 
+          # debug_log "dU: maxHealth" maxHealth;
+          # debug_log "dU: remaining health" health;
+
           if le health maxHealth;
-            battle_game.setTag Tag.NEXT_HIT_GIBS 1;
-            unit.setTag Tag.UNIT_IS_GIBBED 1;
+            if or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
+              battle_game.setTag Tag.NEXT_HIT_GIBS 2;
+              unit.setTag Tag.UNIT_IS_GIBBED 2;
+              # debug_log "dU: set gib mode: 2";
+            else;
+              battle_game.setTag Tag.NEXT_HIT_GIBS 1;
+              unit.setTag Tag.UNIT_IS_GIBBED 1;
+              # debug_log "dU: set gib mode: 1";
+            end;
           end;
           return;
 
@@ -38,34 +59,44 @@ extended:
           var int temp;
 
           battle_game.getTag temp Tag.NEXT_HIT_GIBS;
+          # debug_log "cI: NEXT_HIT_GIBS" temp;
 
           if gt temp 0;
-            item.setTag Tag.ITEM_IS_GIBBED 1;
+            # debug_log "cI: gib mode" temp;
+            item.setTag Tag.ITEM_IS_GIBBED temp;
             # battle_game.setTag Tag.NEXT_HIT_GIBS 0; # this limits gibs on multiple targets
           end;
           return;
 
 
-    selectItemSprite: # apply tag
+    selectItemSprite:
       - new: display_gibbed
         offset: 10
         code: |
           var int temp;
+          var int modOffset;
           item.getTag temp Tag.ITEM_IS_GIBBED;
 
-          if gt temp 0;
-            add sprite_index 1;
+          if eq temp 1; # gib
+            set sprite_index 1200; # for now, should use tag in the future
+          else eq temp 2; # charred
+            set sprite_index 1201;
           end;
+
+          # rules.getSpriteOffsetBigobs modOffset modId; # what is a modId?
+          # add sprite_index modOffset;
+
           return sprite_index;
 
 
-    selectUnitSprite: # apply tag
+    selectUnitSprite:
       - new: display_gibbed
         offset: 10
         code: |
           var int temp;
           var int health;
           var int framesToSkip;
+          var int deathFrames;
 
           var int lowerLimit;
           var int upperLimit;
@@ -73,19 +104,40 @@ extended:
           var ptr RuleArmor myArmor;
 
           unit.getRuleArmor myArmor;
-          myArmor.getTag framesToSkip Tag.FRAMES_TO_SKIP;
+          myArmor.getDeathFrames deathFrames;
+          myArmor.getTag framesToSkip Tag.GIB_SPRITESHEET;
           if eq framesToSkip 0;
             return sprite_index;
           end;
 
           set lowerLimit 264;
-          set upperLimit 266;
+          set upperLimit lowerLimit;
+          add upperLimit deathFrames;
+          sub upperLimit 1; # 266 = 264 + 3 - 1
 
           unit.getTag temp Tag.UNIT_IS_GIBBED;
           unit.getHealth health;
 
-          if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
-            add sprite_index framesToSkip;
+          if gt temp 0;
+            # debug_log "sUS: gib mode" temp;
+          end;
 
+          if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
+            set deathFrames sprite_index;
+            sub deathFrames lowerLimit;
+            # debug_log "sUS: gib mode" temp;
+            if eq temp 1;
+              myArmor.getTag framesToSkip Tag.GIB_SPRITESHEET;
+              add deathFrames framesToSkip;
+              set sprite_index deathFrames;
+              # debug_log "sUS: deathFrames 1: GIB_SPRITESHEET" deathFrames;
+              return sprite_index;
+            else eq temp 2;
+              myArmor.getTag framesToSkip Tag.BURNED_SPRITESHEET;
+              add deathFrames framesToSkip;
+              set sprite_index deathFrames;
+              # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;
+              return sprite_index;
+            end;
           end;
           return sprite_index;

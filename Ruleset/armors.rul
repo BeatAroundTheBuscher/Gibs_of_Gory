@@ -1,38 +1,64 @@
 extended:
   tags:
     RuleArmor:
-      FRAMES_TO_SKIP: int
+      # FRAMES_TO_SKIP: int
+      GIB_SPRITESHEET: int
+      BURNED_SPRITESHEET: int
+    RuleItem:
+
+      GIB_BIGOB: int
+      GIB_FLOOROB: int
+
+      BURNED_BIGOB: int
+      BURNED_FLOOROB: int
 
 armors:
   - type: STR_NONE_UC
     spriteSheet: XCOM_SOLDIER_0_GIB.PCK
     tags:
-      FRAMES_TO_SKIP: 16
+      # FRAMES_TO_SKIP: 16
+      GIB_SPRITESHEET: 300
+      BURNED_SPRITESHEET: 308
 
   - type: STR_PERSONAL_ARMOR_UC
     spriteSheet: XCOM_SOLDIER_1_GIB.PCK
     tags:
-      FRAMES_TO_SKIP: 16
+      GIB_SPRITESHEET: 300
+      BURNED_SPRITESHEET: 308
+      # FRAMES_TO_SKIP: 16
 
   - type: STR_POWER_SUIT_UC
     spriteSheet: XCOM_SOLDIER_2_GIB.PCK
     tags:
-      FRAMES_TO_SKIP: 24
+      GIB_SPRITESHEET: 300
+      BURNED_SPRITESHEET: 308
+      # RAMES_TO_SKIP: 24
 
   - type: STR_FLYING_SUIT_UC
     spriteSheet: XCOM_SOLDIER_2_GIB.PCK
     tags:
-      FRAMES_TO_SKIP: 24
+      GIB_SPRITESHEET: 300
+      BURNED_SPRITESHEET: 308
+      # FRAMES_TO_SKIP: 24
 
 items:
   - type: STR_CORPSE
-    floorSprite: 200
-    bigSprite: 200
+    tags:
+      GIB_BIGOB: 1200 # 1200 = 200 in extraSprites + offset 1000 for the mod
+      GIB_FLOOROB: 1200 # this will probably cause issues with the mod order which add sprites too
+      BURNED_BIGOB: 1201
+      BURNED_FLOOROB: 1201
 
   - type: STR_CORPSE_ARMOR
-    floorSprite: 202
-    bigSprite: 202
+    tags:
+      GIB_BIGOB: 1200
+      GIB_FLOOROB: 1200
+      BURNED_BIGOB: 1201
+      BURNED_FLOOROB: 1201
 
   - type: STR_CORPSE_SUIT
-    floorSprite: 204
-    bigSprite: 204
+    tags:
+      GIB_BIGOB: 1200
+      GIB_FLOOROB: 1200
+      BURNED_BIGOB: 1201
+      BURNED_FLOOROB: 1201
