@@ -13,7 +13,6 @@ extended:
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
       GOO_SPRITESHEET: int
-      FIRST_DEATH_SPRITE_INDEX: int
     RuleItem:
       GIB_BIGOB: int
       GIB_FLOOROB: int
@@ -22,7 +21,7 @@ extended:
       GOO_BIGOB: int
       GOO_FLOOROB: int
 
-      
+
   scripts:
     damageUnit:
       - new: next_hit_gibs
@@ -117,6 +116,7 @@ extended:
           var int lowerLimit;
           var int upperLimit;
           var ptr RuleArmor myArmor;
+          var int armorDrawingRoutine;
 
           unit.getRuleArmor myArmor;
           myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
@@ -127,7 +127,16 @@ extended:
 
           #civ is at 72
           #set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
-          myArmor.getTag lowerLimit Tag.FIRST_DEATH_SPRITE_INDEX;
+          myArmor.getDrawingRoutine armorDrawingRoutine;
+
+          if eq armorDrawingRoutine 0; # xcom soldiers
+            set lowerLimit 264;
+          else eq armorDrawingRoutine 4; # civilians
+            set lowerLimit 72;
+          else;
+            return sprite_index;
+          end;
+
           set upperLimit lowerLimit;
           
           myArmor.getDeathFrames deathFrames;
