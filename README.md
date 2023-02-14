@@ -1,6 +1,6 @@
 # Gibs_of_Gory
 
-Ultraviolance for OpenXcom
+Ultraviolence for OpenXcom
 
 ## Credits
 

@@ -129,11 +129,21 @@ extended:
           #set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
           myArmor.getDrawingRoutine armorDrawingRoutine;
 
-          if eq armorDrawingRoutine 0; # xcom soldiers
+          if eq armorDrawingRoutine 0; # xcom soldiers # sectoid
             set lowerLimit 264;
-          else eq armorDrawingRoutine 4; # civilians
+          else eq armorDrawingRoutine 1; # floaters
+            set lowerLimit 64;
+          else eq armorDrawingRoutine 4; # civilians # ethereal
             set lowerLimit 72;
-          else;
+          else eq armorDrawingRoutine 6; # snakemen
+            set lowerLimit 96;
+          else eq armorDrawingRoutine 7; # chryssalid
+            set lowerLimit 224;
+          else eq armorDrawingRoutine 9; # celatid
+            set lowerLimit 25;
+          else eq armorDrawingRoutine 10; # muton
+            set lowerLimit 264;
+          else; # if not known then end
             return sprite_index;
           end;
 
