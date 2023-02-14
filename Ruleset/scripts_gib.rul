@@ -3,13 +3,13 @@ extended:
     BattleGame:
       NEXT_HIT_GIBS: int
       # 1 gib
-      # 2 charred
+      # 2 burned
+      # 3 goo
     BattleItem:
       ITEM_IS_GIBBED: int
     BattleUnit:
       UNIT_IS_GIBBED: int
     RuleArmor:
-      # FRAMES_TO_SKIP: int
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
       GOO_SPRITESHEET: int
@@ -37,22 +37,16 @@ extended:
           mul maxHealth -1;
           sub health to_health;
 
-          # debug_log "dU: maxHealth" maxHealth;
-          # debug_log "dU: remaining health" health;
-
           if le health maxHealth;
             if eq damaging_type 8; # acid
               battle_game.setTag Tag.NEXT_HIT_GIBS 3;
               unit.setTag Tag.UNIT_IS_GIBBED 3;
-              # debug_log "dU: set gib mode: 3";
             else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
               battle_game.setTag Tag.NEXT_HIT_GIBS 2;
               unit.setTag Tag.UNIT_IS_GIBBED 2;
-              # debug_log "dU: set gib mode: 2";
-            else;
+            else; # anything else
               battle_game.setTag Tag.NEXT_HIT_GIBS 1;
               unit.setTag Tag.UNIT_IS_GIBBED 1;
-              # debug_log "dU: set gib mode: 1";
             end;
           end;
 
@@ -68,12 +62,8 @@ extended:
           var int temp;
 
           battle_game.getTag temp Tag.NEXT_HIT_GIBS;
-          # debug_log "cI: NEXT_HIT_GIBS" temp;
-
           if gt temp 0;
-            # debug_log "cI: gib mode" temp;
             item.setTag Tag.ITEM_IS_GIBBED temp;
-            # battle_game.setTag Tag.NEXT_HIT_GIBS 0; # this limits gibs on multiple targets
           end;
 
           return;
@@ -85,16 +75,30 @@ extended:
         code: |
           var int gibMode;
           var int gibSprite;
+          var ptr RuleItem myItem;
 
           item.getTag gibMode Tag.ITEM_IS_GIBBED;
 
           if gt gibMode 0;
-            if eq gibMode 1; # gib
-              set sprite_index 200; # for now, should use tag in the future
-            else eq gibMode 2; # charred
-              set sprite_index 201;
-            else eq gibMode 3; # goo
-              set sprite_index 202;
+            item.getRuleItem myItem;
+
+            if eq blit_part blit_item_big;
+              if eq gibMode 1;
+                myItem.getTag sprite_index Tag.GIB_BIGOB;
+              else eq gibMode 2;
+                myItem.getTag sprite_index Tag.BURNED_BIGOB;
+              else eq gibMode 3;
+                myItem.getTag sprite_index Tag.GOO_BIGOB;
+              end;
+            end;
+            if eq blit_part blit_item_floor;
+              if eq gibMode 1;
+                myItem.getTag sprite_index Tag.GIB_FLOOROB;
+              else eq gibMode 2;
+                myItem.getTag sprite_index Tag.BURNED_FLOOROB;
+              else eq gibMode 3;
+                myItem.getTag sprite_index Tag.GOO_FLOOROB;
+              end;
             end;
             add sprite_index RuleList.current; # mod offset
           end;
@@ -125,7 +129,7 @@ extended:
             return sprite_index;
           end;
 
-          # civ is at 72
+          #civ is at 72
           #set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
           myArmor.getTag lowerLimit Tag.FIRST_DEATH_SPRITE_INDEX;
           set upperLimit lowerLimit;
@@ -140,24 +144,20 @@ extended:
           if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
             set deathFrames sprite_index; 
             sub deathFrames lowerLimit; # find the current death frame (0, 1, 2, ...)
-            # debug_log "sUS: gib mode" temp;
             if eq temp 1;
               myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
               add deathFrames startFrameOfGibSpritesheet;
               set sprite_index deathFrames;
-              # debug_log "sUS: deathFrames 1: GIB_SPRITESHEET" deathFrames;
               return sprite_index;
             else eq temp 2;
               myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
               add deathFrames startFrameOfGibSpritesheet;
               set sprite_index deathFrames;
-              # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;
               return sprite_index;
             else eq temp 3;
               myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
               add deathFrames startFrameOfGibSpritesheet;
               set sprite_index deathFrames;
-              # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;
               return sprite_index;
             end;
           end;

@@ -47,30 +47,3 @@ armors:
     spriteSheet: CIVF_GOG.PCK
     tags:
       FIRST_DEATH_SPRITE_INDEX: 72
-
-
-#  - type: CIVF_ARMOR
-#    spriteSheet: CIVF_GOG.PCK
-
-items:
-  - &STR_HUMAN_CORPSE
-    type: STR_CORPSE
-    tags:
-      GIB_BIGOB: 200 # 1200 = 200 in extraSprites + offset 1000 for the mod
-      GIB_FLOOROB: 200 # this will probably cause issues with the mod order which add sprites too
-      BURNED_BIGOB: 201
-      BURNED_FLOOROB: 201
-      GOO_BIGOB: 202
-      GOO_FLOOROB: 202
-
-  - type: STR_CORPSE_ARMOR
-    refNode: *STR_HUMAN_CORPSE
-
-  - type: STR_CORPSE_SUIT
-    refNode: *STR_HUMAN_CORPSE
-
-  - type: CIVM_CORPSE
-    refNode: *STR_HUMAN_CORPSE
-
-  - type: CIVF_CORPSE
-    refNode: *STR_HUMAN_CORPSE
