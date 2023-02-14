@@ -21,6 +21,8 @@ extended:
       BURNED_FLOOROB: int
       GOO_BIGOB: int
       GOO_FLOOROB: int
+
+      
   scripts:
     damageUnit:
       - new: next_hit_gibs
@@ -49,8 +51,6 @@ extended:
               unit.setTag Tag.UNIT_IS_GIBBED 1;
             end;
           end;
-
-          
 
           return;
 
@@ -83,27 +83,25 @@ extended:
             item.getRuleItem myItem;
 
             if eq blit_part blit_item_big;
-              if eq gibMode 1;
-                myItem.getTag sprite_index Tag.GIB_BIGOB;
+              if eq gibMode 3;
+                myItem.getTag sprite_index Tag.GOO_BIGOB;
               else eq gibMode 2;
                 myItem.getTag sprite_index Tag.BURNED_BIGOB;
-              else eq gibMode 3;
-                myItem.getTag sprite_index Tag.GOO_BIGOB;
+              else eq gibMode 1;
+                myItem.getTag sprite_index Tag.GIB_BIGOB;
               end;
             end;
             if eq blit_part blit_item_floor;
-              if eq gibMode 1;
-                myItem.getTag sprite_index Tag.GIB_FLOOROB;
+              if eq gibMode 3;
+                myItem.getTag sprite_index Tag.GOO_FLOOROB;
               else eq gibMode 2;
                 myItem.getTag sprite_index Tag.BURNED_FLOOROB;
-              else eq gibMode 3;
-                myItem.getTag sprite_index Tag.GOO_FLOOROB;
+              else eq gibMode 1;
+                myItem.getTag sprite_index Tag.GIB_FLOOROB;
               end;
             end;
             add sprite_index RuleList.current; # mod offset
           end;
-
-
 
           return sprite_index;
 
@@ -116,15 +114,13 @@ extended:
           var int health;
           var int startFrameOfGibSpritesheet;
           var int deathFrames;
-
           var int lowerLimit;
           var int upperLimit;
-
           var ptr RuleArmor myArmor;
 
           unit.getRuleArmor myArmor;
-          
           myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
+
           if eq startFrameOfGibSpritesheet 0;
             return sprite_index;
           end;
@@ -144,21 +140,15 @@ extended:
           if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
             set deathFrames sprite_index; 
             sub deathFrames lowerLimit; # find the current death frame (0, 1, 2, ...)
-            if eq temp 1;
-              myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
-              add deathFrames startFrameOfGibSpritesheet;
-              set sprite_index deathFrames;
-              return sprite_index;
+            if eq temp 3;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
             else eq temp 2;
               myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
-              add deathFrames startFrameOfGibSpritesheet;
-              set sprite_index deathFrames;
-              return sprite_index;
-            else eq temp 3;
-              myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
-              add deathFrames startFrameOfGibSpritesheet;
-              set sprite_index deathFrames;
-              return sprite_index;
+            else eq temp 1;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
             end;
+            add deathFrames startFrameOfGibSpritesheet;
+            set sprite_index deathFrames;
           end;
+
           return sprite_index;
