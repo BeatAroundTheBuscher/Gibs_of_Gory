@@ -4,13 +4,14 @@ extended:
       # FRAMES_TO_SKIP: int
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
+      GOO_SPRITESHEET: int
     RuleItem:
-
       GIB_BIGOB: int
       GIB_FLOOROB: int
-
       BURNED_BIGOB: int
       BURNED_FLOOROB: int
+      GOO_BIGOB: int
+      GOO_FLOOROB: int
 
 armors:
   - type: STR_NONE_UC
@@ -19,27 +20,28 @@ armors:
       # FRAMES_TO_SKIP: 16
       GIB_SPRITESHEET: 300
       BURNED_SPRITESHEET: 308
+      GOO_SPRITESHEET: 316
 
   - type: STR_PERSONAL_ARMOR_UC
     spriteSheet: XCOM_SOLDIER_1_GIB.PCK
     tags:
       GIB_SPRITESHEET: 300
       BURNED_SPRITESHEET: 308
-      # FRAMES_TO_SKIP: 16
+      GOO_SPRITESHEET: 316
 
   - type: STR_POWER_SUIT_UC
     spriteSheet: XCOM_SOLDIER_2_GIB.PCK
     tags:
       GIB_SPRITESHEET: 300
       BURNED_SPRITESHEET: 308
-      # RAMES_TO_SKIP: 24
+      GOO_SPRITESHEET: 316
 
   - type: STR_FLYING_SUIT_UC
     spriteSheet: XCOM_SOLDIER_2_GIB.PCK
     tags:
       GIB_SPRITESHEET: 300
       BURNED_SPRITESHEET: 308
-      # FRAMES_TO_SKIP: 24
+      GOO_SPRITESHEET: 316
 
 items:
   - type: STR_CORPSE
@@ -48,6 +50,8 @@ items:
       GIB_FLOOROB: 1200 # this will probably cause issues with the mod order which add sprites too
       BURNED_BIGOB: 1201
       BURNED_FLOOROB: 1201
+      GOO_BIGOB: 1202
+      GOO_FLOOROB: 1202
 
   - type: STR_CORPSE_ARMOR
     tags:
@@ -55,6 +59,8 @@ items:
       GIB_FLOOROB: 1200
       BURNED_BIGOB: 1201
       BURNED_FLOOROB: 1201
+      GOO_BIGOB: 1202
+      GOO_FLOOROB: 1202
 
   - type: STR_CORPSE_SUIT
     tags:
@@ -62,3 +68,5 @@ items:
       GIB_FLOOROB: 1200
       BURNED_BIGOB: 1201
       BURNED_FLOOROB: 1201
+      GOO_BIGOB: 1202
+      GOO_FLOOROB: 1202

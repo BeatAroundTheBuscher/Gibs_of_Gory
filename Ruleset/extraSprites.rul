@@ -3,12 +3,14 @@ extraSprites:
     files:
       200: Resources/floorob_gibs.png
       201: Resources/Brain_322/floorob_Ash.png
+      202: Resources/Brain_322/floorob_Goo.png
 
 
   - type: BIGOBS.PCK
     files:
       200: Resources/floorob_gibs.png
-      201: Resources/floorob_charred.png
+      201: Resources/Brain_322/floorob_Ash.png
+      202: Resources/Brain_322/floorob_Goo.png
 
   - type: XCOM_SOLDIER_0_GIB.PCK 
     subX: 32
@@ -19,6 +21,8 @@ extraSprites:
       0: Resources/XCOM_0.PNG
       300: Resources/XCOM_0_gibs.PNG
       308: Resources/Brain_322/human_to_ash_three.png
+      316: Resources/Brain_322/human_to_goo_three.png
+
 
   - type: XCOM_SOLDIER_1_GIB.PCK 
     subX: 32
@@ -29,6 +33,7 @@ extraSprites:
       0: Resources/XCOM_1.PNG
       300: Resources/XCOM_0_gibs.PNG
       308: Resources/Brain_322/human_to_ash_three.png
+      316: Resources/Brain_322/human_to_goo_three.png
 
   - type: XCOM_SOLDIER_2_GIB.PCK 
     subX: 32
@@ -39,3 +44,4 @@ extraSprites:
       0: Resources/XCOM_2.PNG
       300: Resources/XCOM_0_gibs.PNG
       308: Resources/Brain_322/human_to_ash_three.png
+      316: Resources/Brain_322/human_to_goo_three.png

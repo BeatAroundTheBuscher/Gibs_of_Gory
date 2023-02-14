@@ -39,7 +39,11 @@ extended:
           # debug_log "dU: remaining health" health;
 
           if le health maxHealth;
-            if or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
+            if eq damaging_type 8; # acid
+              battle_game.setTag Tag.NEXT_HIT_GIBS 3;
+              unit.setTag Tag.UNIT_IS_GIBBED 3;
+              # debug_log "dU: set gib mode: 3";
+            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
               battle_game.setTag Tag.NEXT_HIT_GIBS 2;
               unit.setTag Tag.UNIT_IS_GIBBED 2;
               # debug_log "dU: set gib mode: 2";
@@ -81,6 +85,8 @@ extended:
             set sprite_index 1200; # for now, should use tag in the future
           else eq temp 2; # charred
             set sprite_index 1201;
+          else eq temp 3; # goo
+            set sprite_index 1202;
           end;
 
           # rules.getSpriteOffsetBigobs modOffset modId; # what is a modId?
@@ -95,7 +101,7 @@ extended:
         code: |
           var int temp;
           var int health;
-          var int framesToSkip;
+          var int startFrameOfGibSpritesheet;
           var int deathFrames;
 
           var int lowerLimit;
@@ -104,37 +110,41 @@ extended:
           var ptr RuleArmor myArmor;
 
           unit.getRuleArmor myArmor;
-          myArmor.getDeathFrames deathFrames;
-          myArmor.getTag framesToSkip Tag.GIB_SPRITESHEET;
-          if eq framesToSkip 0;
+          
+          myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
+          if eq startFrameOfGibSpritesheet 0;
             return sprite_index;
           end;
 
-          set lowerLimit 264;
+          set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
           set upperLimit lowerLimit;
+          
+          myArmor.getDeathFrames deathFrames;
           add upperLimit deathFrames;
           sub upperLimit 1; # 266 = 264 + 3 - 1
 
           unit.getTag temp Tag.UNIT_IS_GIBBED;
-          unit.getHealth health;
-
-          if gt temp 0;
-            # debug_log "sUS: gib mode" temp;
-          end;
+          unit.getHealth health; # sanity check
 
           if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
-            set deathFrames sprite_index;
-            sub deathFrames lowerLimit;
+            set deathFrames sprite_index; 
+            sub deathFrames lowerLimit; # find the current death frame (0, 1, 2, ...)
             # debug_log "sUS: gib mode" temp;
             if eq temp 1;
-              myArmor.getTag framesToSkip Tag.GIB_SPRITESHEET;
-              add deathFrames framesToSkip;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
+              add deathFrames startFrameOfGibSpritesheet;
               set sprite_index deathFrames;
               # debug_log "sUS: deathFrames 1: GIB_SPRITESHEET" deathFrames;
               return sprite_index;
             else eq temp 2;
-              myArmor.getTag framesToSkip Tag.BURNED_SPRITESHEET;
-              add deathFrames framesToSkip;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
+              add deathFrames startFrameOfGibSpritesheet;
+              set sprite_index deathFrames;
+              # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;
+              return sprite_index;
+            else eq temp 3;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
+              add deathFrames startFrameOfGibSpritesheet;
               set sprite_index deathFrames;
               # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;
               return sprite_index;
