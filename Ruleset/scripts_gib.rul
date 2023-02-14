@@ -12,13 +12,15 @@ extended:
       # FRAMES_TO_SKIP: int
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
+      GOO_SPRITESHEET: int
+      FIRST_DEATH_SPRITE_INDEX: int
     RuleItem:
-
       GIB_BIGOB: int
       GIB_FLOOROB: int
-
       BURNED_BIGOB: int
       BURNED_FLOOROB: int
+      GOO_BIGOB: int
+      GOO_FLOOROB: int
   scripts:
     damageUnit:
       - new: next_hit_gibs
@@ -53,6 +55,9 @@ extended:
               # debug_log "dU: set gib mode: 1";
             end;
           end;
+
+          
+
           return;
 
 
@@ -70,6 +75,7 @@ extended:
             item.setTag Tag.ITEM_IS_GIBBED temp;
             # battle_game.setTag Tag.NEXT_HIT_GIBS 0; # this limits gibs on multiple targets
           end;
+
           return;
 
 
@@ -77,20 +83,23 @@ extended:
       - new: display_gibbed
         offset: 10
         code: |
-          var int temp;
-          var int modOffset;
-          item.getTag temp Tag.ITEM_IS_GIBBED;
+          var int gibMode;
+          var int gibSprite;
 
-          if eq temp 1; # gib
-            set sprite_index 1200; # for now, should use tag in the future
-          else eq temp 2; # charred
-            set sprite_index 1201;
-          else eq temp 3; # goo
-            set sprite_index 1202;
+          item.getTag gibMode Tag.ITEM_IS_GIBBED;
+
+          if gt gibMode 0;
+            if eq gibMode 1; # gib
+              set sprite_index 200; # for now, should use tag in the future
+            else eq gibMode 2; # charred
+              set sprite_index 201;
+            else eq gibMode 3; # goo
+              set sprite_index 202;
+            end;
+            add sprite_index RuleList.current; # mod offset
           end;
 
-          # rules.getSpriteOffsetBigobs modOffset modId; # what is a modId?
-          # add sprite_index modOffset;
+
 
           return sprite_index;
 
@@ -116,7 +125,9 @@ extended:
             return sprite_index;
           end;
 
-          set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
+          # civ is at 72
+          #set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
+          myArmor.getTag lowerLimit Tag.FIRST_DEATH_SPRITE_INDEX;
           set upperLimit lowerLimit;
           
           myArmor.getDeathFrames deathFrames;
@@ -143,7 +154,7 @@ extended:
               # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;
               return sprite_index;
             else eq temp 3;
-              myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
               add deathFrames startFrameOfGibSpritesheet;
               set sprite_index deathFrames;
               # debug_log "sUS: deathFrames 2: GIB_SPRITESHEET" deathFrames;

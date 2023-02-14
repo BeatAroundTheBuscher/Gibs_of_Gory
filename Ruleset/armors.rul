@@ -5,6 +5,7 @@ extended:
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
       GOO_SPRITESHEET: int
+      FIRST_DEATH_SPRITE_INDEX: int
     RuleItem:
       GIB_BIGOB: int
       GIB_FLOOROB: int
@@ -14,59 +15,62 @@ extended:
       GOO_FLOOROB: int
 
 armors:
-  - type: STR_NONE_UC
-    spriteSheet: XCOM_SOLDIER_0_GIB.PCK
+  - &STR_HUMAN_ARMOR
+    type: STR_NONE_UC
+    spriteSheet: XCOM_SOLDIER_0_GOG.PCK
     tags:
-      # FRAMES_TO_SKIP: 16
+      FIRST_DEATH_SPRITE_INDEX: 264
       GIB_SPRITESHEET: 300
       BURNED_SPRITESHEET: 308
       GOO_SPRITESHEET: 316
 
   - type: STR_PERSONAL_ARMOR_UC
-    spriteSheet: XCOM_SOLDIER_1_GIB.PCK
-    tags:
-      GIB_SPRITESHEET: 300
-      BURNED_SPRITESHEET: 308
-      GOO_SPRITESHEET: 316
+    refNode: *STR_HUMAN_ARMOR
+    spriteSheet: XCOM_SOLDIER_1_GOG.PCK
 
   - type: STR_POWER_SUIT_UC
-    spriteSheet: XCOM_SOLDIER_2_GIB.PCK
-    tags:
-      GIB_SPRITESHEET: 300
-      BURNED_SPRITESHEET: 308
-      GOO_SPRITESHEET: 316
+    refNode: *STR_HUMAN_ARMOR
+    spriteSheet: XCOM_SOLDIER_2_GOG.PCK
 
   - type: STR_FLYING_SUIT_UC
-    spriteSheet: XCOM_SOLDIER_2_GIB.PCK
+    refNode: *STR_HUMAN_ARMOR
+    spriteSheet: XCOM_SOLDIER_2_GOG.PCK
+
+  - type: CIVM_ARMOR
+    refNode: *STR_HUMAN_ARMOR
+    spriteSheet: CIVM_GOG.PCK
     tags:
-      GIB_SPRITESHEET: 300
-      BURNED_SPRITESHEET: 308
-      GOO_SPRITESHEET: 316
+      FIRST_DEATH_SPRITE_INDEX: 72
+
+  - type: CIVF_ARMOR
+    refNode: *STR_HUMAN_ARMOR
+    spriteSheet: CIVF_GOG.PCK
+    tags:
+      FIRST_DEATH_SPRITE_INDEX: 72
+
+
+#  - type: CIVF_ARMOR
+#    spriteSheet: CIVF_GOG.PCK
 
 items:
-  - type: STR_CORPSE
+  - &STR_HUMAN_CORPSE
+    type: STR_CORPSE
     tags:
-      GIB_BIGOB: 1200 # 1200 = 200 in extraSprites + offset 1000 for the mod
-      GIB_FLOOROB: 1200 # this will probably cause issues with the mod order which add sprites too
-      BURNED_BIGOB: 1201
-      BURNED_FLOOROB: 1201
-      GOO_BIGOB: 1202
-      GOO_FLOOROB: 1202
+      GIB_BIGOB: 200 # 1200 = 200 in extraSprites + offset 1000 for the mod
+      GIB_FLOOROB: 200 # this will probably cause issues with the mod order which add sprites too
+      BURNED_BIGOB: 201
+      BURNED_FLOOROB: 201
+      GOO_BIGOB: 202
+      GOO_FLOOROB: 202
 
   - type: STR_CORPSE_ARMOR
-    tags:
-      GIB_BIGOB: 1200
-      GIB_FLOOROB: 1200
-      BURNED_BIGOB: 1201
-      BURNED_FLOOROB: 1201
-      GOO_BIGOB: 1202
-      GOO_FLOOROB: 1202
+    refNode: *STR_HUMAN_CORPSE
 
   - type: STR_CORPSE_SUIT
-    tags:
-      GIB_BIGOB: 1200
-      GIB_FLOOROB: 1200
-      BURNED_BIGOB: 1201
-      BURNED_FLOOROB: 1201
-      GOO_BIGOB: 1202
-      GOO_FLOOROB: 1202
+    refNode: *STR_HUMAN_CORPSE
+
+  - type: CIVM_CORPSE
+    refNode: *STR_HUMAN_CORPSE
+
+  - type: CIVF_CORPSE
+    refNode: *STR_HUMAN_CORPSE

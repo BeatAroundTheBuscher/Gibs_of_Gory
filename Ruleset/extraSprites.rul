@@ -12,7 +12,7 @@ extraSprites:
       201: Resources/Brain_322/floorob_Ash.png
       202: Resources/Brain_322/floorob_Goo.png
 
-  - type: XCOM_SOLDIER_0_GIB.PCK 
+  - type: XCOM_SOLDIER_0_GOG.PCK 
     subX: 32
     subY: 40
     width: 256
@@ -24,7 +24,7 @@ extraSprites:
       316: Resources/Brain_322/human_to_goo_three.png
 
 
-  - type: XCOM_SOLDIER_1_GIB.PCK 
+  - type: XCOM_SOLDIER_1_GOG.PCK 
     subX: 32
     subY: 48
     width: 256
@@ -35,13 +35,35 @@ extraSprites:
       308: Resources/Brain_322/human_to_ash_three.png
       316: Resources/Brain_322/human_to_goo_three.png
 
-  - type: XCOM_SOLDIER_2_GIB.PCK 
+  - type: XCOM_SOLDIER_2_GOG.PCK 
     subX: 32
     subY: 48
     width: 256
     height: 1728
     files:
       0: Resources/XCOM_2.PNG
+      300: Resources/XCOM_0_gibs.PNG
+      308: Resources/Brain_322/human_to_ash_three.png
+      316: Resources/Brain_322/human_to_goo_three.png
+
+  - type: CIVM_GOG.PCK
+    subX: 32
+    subY: 40
+    width: 256
+    height: 400
+    files:
+      0: Resources/CIVM.PNG
+      300: Resources/XCOM_0_gibs.PNG
+      308: Resources/Brain_322/human_to_ash_three.png
+      316: Resources/Brain_322/human_to_goo_three.png
+
+  - type: CIVF_GOG.PCK
+    subX: 32
+    subY: 40
+    width: 256
+    height: 400
+    files:
+      0: Resources/CIVM.PNG
       300: Resources/XCOM_0_gibs.PNG
       308: Resources/Brain_322/human_to_ash_three.png
       316: Resources/Brain_322/human_to_goo_three.png
