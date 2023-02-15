@@ -2,6 +2,7 @@ extended:
   tags:
     RuleArmor:
       # FRAMES_TO_SKIP: int
+      NORMAL_SPRITESHEET: int
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
       GOO_SPRITESHEET: int
@@ -17,10 +18,12 @@ armors:
   - &STR_GOG_ARMOR
     type: STR_NONE_UC
     spriteSheet: XCOM_SOLDIER_0_GOG.PCK
+    deathFrames: 3 # 8
     tags:
-      GIB_SPRITESHEET: 300
-      BURNED_SPRITESHEET: 308
-      GOO_SPRITESHEET: 316
+      NORMAL_SPRITESHEET: 300
+      GIB_SPRITESHEET: 308
+      BURNED_SPRITESHEET: 316
+      GOO_SPRITESHEET: 324
 
   - type: STR_PERSONAL_ARMOR_UC
     refNode: *STR_GOG_ARMOR
