@@ -10,6 +10,7 @@ extended:
     BattleUnit:
       UNIT_IS_GIBBED: int
     RuleArmor:
+      NORMAL_SPRITESHEET: int
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
       GOO_SPRITESHEET: int
@@ -114,12 +115,11 @@ extended:
           var int startFrameOfGibSpritesheet;
           var int deathFrames;
           var int lowerLimit;
-          var int upperLimit;
           var ptr RuleArmor myArmor;
-          var int armorDrawingRoutine;
+          var int collapsing;
 
           unit.getRuleArmor myArmor;
-          myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
+          myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
 
           if eq startFrameOfGibSpritesheet 0;
             return sprite_index;
@@ -127,47 +127,50 @@ extended:
 
           #civ is at 72
           #set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
-          myArmor.getDrawingRoutine armorDrawingRoutine;
+          myArmor.getDrawingRoutine temp;
 
-          if eq armorDrawingRoutine 0; # xcom soldiers # sectoid
+          if eq temp 0; # xcom soldiers # sectoid
             set lowerLimit 264;
-          else eq armorDrawingRoutine 1; # floaters
+          else eq temp 1; # floaters
             set lowerLimit 64;
-          else eq armorDrawingRoutine 4; # civilians # ethereal
+          else eq temp 4; # civilians # ethereal
             set lowerLimit 72;
-          else eq armorDrawingRoutine 6; # snakemen
+          else eq temp 6; # snakemen
             set lowerLimit 96;
-          else eq armorDrawingRoutine 7; # chryssalid
+          else eq temp 7; # chryssalid
             set lowerLimit 224;
-          else eq armorDrawingRoutine 9; # celatid
+          else eq temp 9; # celatid
             set lowerLimit 25;
-          else eq armorDrawingRoutine 10; # muton
+          else eq temp 10; # muton
             set lowerLimit 264;
           else; # if not known then end
             return sprite_index;
           end;
 
-          set upperLimit lowerLimit;
-          
-          myArmor.getDeathFrames deathFrames;
-          add upperLimit deathFrames;
-          sub upperLimit 1; # 266 = 264 + 3 - 1
-
           unit.getTag temp Tag.UNIT_IS_GIBBED;
           unit.getHealth health; # sanity check
 
-          if and gt temp 0 le health 0 ge sprite_index lowerLimit le sprite_index upperLimit;
-            set deathFrames sprite_index; 
-            sub deathFrames lowerLimit; # find the current death frame (0, 1, 2, ...)
+          unit.isCollapsing collapsing;
+
+          set deathFrames sprite_index; 
+          sub deathFrames lowerLimit; # find the current death frame (0, 1, 2, ...)
+
+          if and eq collapsing 1 le health 0;
             if eq temp 3;
               myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
             else eq temp 2;
               myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
             else eq temp 1;
               myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
+            else;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
             end;
             add deathFrames startFrameOfGibSpritesheet;
             set sprite_index deathFrames;
+          else eq collapsing 1;
+            myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
+            add deathFrames startFrameOfGibSpritesheet;
+            set sprite_index deathFrames;            
           end;
 
           return sprite_index;
