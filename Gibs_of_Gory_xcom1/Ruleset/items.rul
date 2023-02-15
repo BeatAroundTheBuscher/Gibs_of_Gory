@@ -1,0 +1,96 @@
+extended:
+  tags:
+    RuleItem:
+      GIB_BIGOB: int
+      GIB_FLOOROB: int
+      BURNED_BIGOB: int
+      BURNED_FLOOROB: int
+      GOO_BIGOB: int
+      GOO_FLOOROB: int
+
+
+items:
+  - &STR_HUMAN_CORPSE
+    type: STR_CORPSE
+    tags:
+      GIB_BIGOB: 200
+      GIB_FLOOROB: 200
+      BURNED_BIGOB: 201
+      BURNED_FLOOROB: 201
+      GOO_BIGOB: 202
+      GOO_FLOOROB: 202
+
+  - type: STR_CORPSE_ARMOR
+    refNode: *STR_HUMAN_CORPSE
+
+  - type: STR_CORPSE_SUIT
+    refNode: *STR_HUMAN_CORPSE
+
+  - type: CIVM_CORPSE
+    refNode: *STR_HUMAN_CORPSE
+
+  - type: CIVF_CORPSE
+    refNode: *STR_HUMAN_CORPSE
+
+  - type: STR_SECTOID_CORPSE
+    tags:
+      GIB_BIGOB: 205
+      GIB_FLOOROB: 205
+      BURNED_BIGOB: 205
+      BURNED_FLOOROB: 205
+      GOO_BIGOB: 205
+      GOO_FLOOROB: 205
+
+  - type: STR_SNAKEMAN_CORPSE
+    tags:
+      GIB_BIGOB: 205
+      GIB_FLOOROB: 205
+      BURNED_BIGOB: 205
+      BURNED_FLOOROB: 205
+      GOO_BIGOB: 205
+      GOO_FLOOROB: 205
+
+  - type: STR_ETHEREAL_CORPSE
+    tags:
+      GIB_BIGOB: 225
+      GIB_FLOOROB: 225
+      BURNED_BIGOB: 225
+      BURNED_FLOOROB: 225
+      GOO_BIGOB: 225
+      GOO_FLOOROB: 225
+
+  - type: STR_MUTON_CORPSE
+    tags:
+      GIB_BIGOB: 215
+      GIB_FLOOROB: 215
+      BURNED_BIGOB: 215
+      BURNED_FLOOROB: 215
+      GOO_BIGOB: 215
+      GOO_FLOOROB: 215
+
+  - type: STR_FLOATER_CORPSE
+    tags:
+      GIB_BIGOB: 210
+      GIB_FLOOROB: 210
+      BURNED_BIGOB: 210
+      BURNED_FLOOROB: 210
+      GOO_BIGOB: 210
+      GOO_FLOOROB: 210
+
+  - type: STR_CELATID_CORPSE
+    tags:
+      GIB_BIGOB: 220
+      GIB_FLOOROB: 220
+      BURNED_BIGOB: 220
+      BURNED_FLOOROB: 220
+      GOO_BIGOB: 220
+      GOO_FLOOROB: 220
+
+  - type: STR_CHRYSSALID_CORPSE
+    tags:
+      GIB_BIGOB: 205
+      GIB_FLOOROB: 205
+      BURNED_BIGOB: 205
+      BURNED_FLOOROB: 205
+      GOO_BIGOB: 205
+      GOO_FLOOROB: 205

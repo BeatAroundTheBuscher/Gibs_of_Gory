@@ -1,0 +1,178 @@
+extended:
+  tags:
+    BattleGame:
+      NEXT_HIT_GIBS: int
+      # 1 gib
+      # 2 burned
+      # 3 goo
+    BattleItem:
+      ITEM_IS_GIBBED: int
+    BattleUnit:
+      UNIT_IS_GIBBED: int
+    RuleArmor:
+      NORMAL_SPRITESHEET: int
+      GIB_SPRITESHEET: int
+      BURNED_SPRITESHEET: int
+      GOO_SPRITESHEET: int
+    RuleItem:
+      GIB_BIGOB: int
+      GIB_FLOOROB: int
+      BURNED_BIGOB: int
+      BURNED_FLOOROB: int
+      GOO_BIGOB: int
+      GOO_FLOOROB: int
+
+
+  scripts:
+    damageUnit:
+      - new: next_hit_gibs
+        offset: 1
+        code: |
+          var int health;
+          var int maxHealth;
+
+          battle_game.setTag Tag.NEXT_HIT_GIBS 0; # sanity check
+
+          unit.getHealth health;
+          unit.getHealthMax maxHealth;
+
+          mul maxHealth -1;
+          sub health to_health;
+
+          if le health maxHealth;
+            if eq damaging_type 8; # acid
+              battle_game.setTag Tag.NEXT_HIT_GIBS 3;
+              unit.setTag Tag.UNIT_IS_GIBBED 3;
+            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
+              battle_game.setTag Tag.NEXT_HIT_GIBS 2;
+              unit.setTag Tag.UNIT_IS_GIBBED 2;
+            else; # anything else
+              battle_game.setTag Tag.NEXT_HIT_GIBS 1;
+              unit.setTag Tag.UNIT_IS_GIBBED 1;
+            end;
+          end;
+
+          return;
+
+
+    createItem:
+      - new: tag_item_is_gibbed
+        offset: 1
+        code: |
+          var int temp;
+
+          battle_game.getTag temp Tag.NEXT_HIT_GIBS;
+          if gt temp 0;
+            item.setTag Tag.ITEM_IS_GIBBED temp;
+          end;
+
+          return;
+
+
+    selectItemSprite:
+      - new: display_gibbed
+        offset: 10
+        code: |
+          var int gibMode;
+          var int gibSprite;
+          var ptr RuleItem myItem;
+
+          item.getTag gibMode Tag.ITEM_IS_GIBBED;
+
+          if gt gibMode 0;
+            item.getRuleItem myItem;
+
+            if eq blit_part blit_item_big;
+              if eq gibMode 3;
+                myItem.getTag sprite_index Tag.GOO_BIGOB;
+              else eq gibMode 2;
+                myItem.getTag sprite_index Tag.BURNED_BIGOB;
+              else eq gibMode 1;
+                myItem.getTag sprite_index Tag.GIB_BIGOB;
+              end;
+            end;
+            if eq blit_part blit_item_floor;
+              if eq gibMode 3;
+                myItem.getTag sprite_index Tag.GOO_FLOOROB;
+              else eq gibMode 2;
+                myItem.getTag sprite_index Tag.BURNED_FLOOROB;
+              else eq gibMode 1;
+                myItem.getTag sprite_index Tag.GIB_FLOOROB;
+              end;
+            end;
+            add sprite_index RuleList.current; # mod offset
+          end;
+
+          return sprite_index;
+
+
+    selectUnitSprite:
+      - new: display_gibbed
+        offset: 10
+        code: |
+          var int temp;
+          var int health;
+          var int startFrameOfGibSpritesheet;
+          var int currentFrame;
+          var int numDeathFrames;
+          var int lowerLimit;
+          var ptr RuleArmor myArmor;
+          var int collapsing;
+
+          unit.getRuleArmor myArmor;
+          myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
+
+          if eq startFrameOfGibSpritesheet 0;
+            return sprite_index;
+          end;
+
+          #civ is at 72
+          #set lowerLimit 264; # 264 is the default death animation start for currentFrame: 3 (default)
+          myArmor.getDrawingRoutine temp;
+
+          if eq temp 0; # xcom soldiers # sectoid
+            set lowerLimit 264;
+          else eq temp 1; # floaters
+            set lowerLimit 64;
+          else eq temp 4; # civilians # ethereal
+            set lowerLimit 72;
+          else eq temp 6; # snakemen
+            set lowerLimit 96;
+          else eq temp 7; # chryssalid
+            set lowerLimit 224;
+          else eq temp 9; # celatid
+            set lowerLimit 25;
+          else eq temp 10; # muton
+            set lowerLimit 264;
+          else; # if not known then end
+            return sprite_index;
+          end;
+
+          unit.getHealth health;
+          unit.isCollapsing collapsing;
+          myArmor.getDeathFrames numDeathFrames;
+
+          set currentFrame sprite_index; 
+          sub currentFrame lowerLimit; # find the current death frame (0, 1, 2, ...)
+
+          unit.getTag temp Tag.UNIT_IS_GIBBED;
+
+          if and eq collapsing 1 le health 0;
+            if eq temp 3;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
+            else eq temp 2;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
+            else eq temp 1;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
+            else;
+              myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
+            end;
+            add currentFrame startFrameOfGibSpritesheet;
+            set sprite_index currentFrame;
+          else and eq collapsing 1 gt numDeathFrames 3; # if more than the default three frames
+            myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
+            add currentFrame startFrameOfGibSpritesheet;
+            set sprite_index currentFrame;            
+          end;
+
+          return sprite_index;
