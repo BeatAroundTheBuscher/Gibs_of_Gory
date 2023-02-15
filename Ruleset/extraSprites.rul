@@ -57,3 +57,136 @@ extraSprites:
       328: Resources/Vanilla/XCOM_0_gibs.PNG
       336: Resources/Brain_322/human_to_ash.png
       344: Resources/Brain_322/human_to_goo.png
+
+  - type: CIVIL_1_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 912
+    files:
+      0: Resources/Vanilla/CIVIL_1.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: CIVIL_2_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 912
+    files:
+      0: Resources/Vanilla/CIVIL_2.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: AQUA_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/AQUA.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: DEEPONE_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/DEEPONE.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: GILLMAN_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/GILLMAN.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: TASOTHS_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/TASOTHS.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: CALCIN_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/CALCIN.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: CALCIN_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/CALCIN.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: TENTAC_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 144
+    files:
+      0: Resources/Vanilla/TENTAC.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: LOBSTER_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 1584
+    files:
+      0: Resources/Vanilla/LOBSTER.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
+  - type: BIODRON_GOG.PCK 
+    subX: 32
+    subY: 48
+    width: 256
+    height: 96
+    files:
+      0: Resources/Vanilla/BIODRON.PNG
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
+
