@@ -10,7 +10,7 @@ armors:
   - &STR_GOG_ARMOR
     type: STR_NONE_UC
     spriteSheet: TDXCOM_0_GOG.PCK
-    deathFrames: 3 # 8
+    deathFrames: 8
     tags:
       NORMAL_SPRITESHEET: 320
       GIB_SPRITESHEET: 328
