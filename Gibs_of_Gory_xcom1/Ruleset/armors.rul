@@ -18,12 +18,12 @@ armors:
   - &STR_GOG_ARMOR
     type: STR_NONE_UC
     spriteSheet: XCOM_SOLDIER_0_GOG.PCK
-    deathFrames: 3 # 8
+    deathFrames: 8
     tags:
-      NORMAL_SPRITESHEET: 300
-      GIB_SPRITESHEET: 308
-      BURNED_SPRITESHEET: 316
-      GOO_SPRITESHEET: 324
+      NORMAL_SPRITESHEET: 320
+      GIB_SPRITESHEET: 328
+      BURNED_SPRITESHEET: 336
+      GOO_SPRITESHEET: 344
 
   - type: STR_PERSONAL_ARMOR_UC
     refNode: *STR_GOG_ARMOR
@@ -53,6 +53,7 @@ armors:
     type: FLOATER_ARMOR0
     refNode: *STR_GOG_ARMOR
     spriteSheet: FLOATER_GOG.PCK
+    deathFrames: 3
   - type: FLOATER_ARMOR1
     refNode: *STR_FLOATER_ARMOR
   - type: FLOATER_ARMOR2
@@ -62,6 +63,7 @@ armors:
     type: SNAKEMAN_ARMOR0
     refNode: *STR_GOG_ARMOR
     spriteSheet: SNAKEMAN_GOG.PCK
+    deathFrames: 3
   - type: SNAKEMAN_ARMOR1
     refNode: *STR_SNAKEMAN_ARMOR
   - type: SNAKEMAN_ARMOR2
@@ -71,6 +73,7 @@ armors:
     type: MUTON_ARMOR0
     refNode: *STR_GOG_ARMOR
     spriteSheet: MUTON_GOG.PCK
+    deathFrames: 3
   - type: MUTON_ARMOR1
     refNode: *STR_MUTON_ARMOR
   - type: MUTON_ARMOR2
@@ -80,6 +83,7 @@ armors:
     type: ETHEREAL_ARMOR0
     refNode: *STR_GOG_ARMOR
     spriteSheet: ETHEREAL_GOG.PCK
+    deathFrames: 3
   - type: ETHEREAL_ARMOR1
     refNode: *STR_ETHEREAL_ARMOR
   - type: ETHEREAL_ARMOR2
@@ -88,7 +92,9 @@ armors:
   - type: CHRYSSALID_ARMOR
     refNode: *STR_GOG_ARMOR  
     spriteSheet: CHRYS_GOG.PCK
+    deathFrames: 3
 
   - type: CELATID_ARMOR
     refNode: *STR_GOG_ARMOR  
     spriteSheet: CELATID_GOG.PCK
+    deathFrames: 3

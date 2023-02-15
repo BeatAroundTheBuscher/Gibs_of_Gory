@@ -29,10 +29,10 @@ extraSprites:
     height: 1400
     files:
       0: Resources/Vanilla/XCOM_0.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/XCOM_0_gibs.PNG
-      316: Resources/Brain_322/human_to_ash.png
-      324: Resources/Brain_322/human_to_goo.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
 
 
   - type: XCOM_SOLDIER_1_GOG.PCK 
@@ -42,10 +42,10 @@ extraSprites:
     height: 1680
     files:
       0: Resources/Vanilla/XCOM_1.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/XCOM_0_gibs.PNG
-      316: Resources/Brain_322/human_to_ash.png
-      324: Resources/Brain_322/human_to_goo.png
+      320: Resources/Vanilla/XCOM_1_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
 
   - type: XCOM_SOLDIER_2_GOG.PCK 
     subX: 32
@@ -54,10 +54,10 @@ extraSprites:
     height: 1728
     files:
       0: Resources/Vanilla/XCOM_2.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/XCOM_0_gibs.PNG
-      316: Resources/Brain_322/human_to_ash.png
-      324: Resources/Brain_322/human_to_goo.png
+      320: Resources/Vanilla/XCOM_2_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
 
   - type: CIVM_GOG.PCK
     subX: 32
@@ -66,10 +66,10 @@ extraSprites:
     height: 400
     files:
       0: Resources/Vanilla/CIVM.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/XCOM_0_gibs.PNG
-      316: Resources/Brain_322/human_to_ash.png
-      324: Resources/Brain_322/human_to_goo.png
+      320: Resources/Vanilla/CIVM_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
 
   - type: CIVF_GOG.PCK
     subX: 32
@@ -78,10 +78,10 @@ extraSprites:
     height: 400
     files:
       0: Resources/Vanilla/CIVF.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/XCOM_0_gibs.PNG
-      316: Resources/Brain_322/human_to_ash.png
-      324: Resources/Brain_322/human_to_goo.png
+      320: Resources/Vanilla/CIVF_normal.PNG
+      328: Resources/Vanilla/XCOM_0_gibs.PNG
+      336: Resources/Brain_322/human_to_ash.png
+      344: Resources/Brain_322/human_to_goo.png
 
   - type: SECTOID_GOG.PCK
     subX: 32
@@ -90,10 +90,10 @@ extraSprites:
     height: 1632
     files:
       0: Resources/Vanilla/SECTOID.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/SECTOID_gibs.png # green
-      316: Resources/Vanilla/SECTOID_gibs.png
-      324: Resources/Vanilla/SECTOID_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/SECTOID_gibs.png # green
+      336: Resources/Vanilla/SECTOID_gibs.png
+      344: Resources/Vanilla/SECTOID_gibs.png
 
   - type: FLOATER_GOG.PCK
     subX: 32
@@ -102,10 +102,10 @@ extraSprites:
     height: 624
     files:
       0: Resources/Vanilla/FLOATER.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/FLOATER_gibs.png # purple
-      316: Resources/Vanilla/FLOATER_gibs.png
-      324: Resources/Vanilla/FLOATER_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/FLOATER_gibs.png # purple
+      336: Resources/Vanilla/FLOATER_gibs.png
+      344: Resources/Vanilla/FLOATER_gibs.png
 
   - type: SNAKEMAN_GOG.PCK
     subX: 32
@@ -114,10 +114,10 @@ extraSprites:
     height: 816
     files:
       0: Resources/Vanilla/SNAKEMAN.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/SECTOID_gibs.png # green
-      316: Resources/Vanilla/SECTOID_gibs.png
-      324: Resources/Vanilla/SECTOID_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/SECTOID_gibs.png # green
+      336: Resources/Vanilla/SECTOID_gibs.png
+      344: Resources/Vanilla/SECTOID_gibs.png
 
   - type: CHRYS_GOG.PCK
     subX: 32
@@ -126,10 +126,10 @@ extraSprites:
     height: 1392
     files:
       0: Resources/Vanilla/CHRYS.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/SECTOID_gibs.png # green
-      316: Resources/Vanilla/SECTOID_gibs.png
-      324: Resources/Vanilla/SECTOID_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/SECTOID_gibs.png # green
+      336: Resources/Vanilla/SECTOID_gibs.png
+      344: Resources/Vanilla/SECTOID_gibs.png
 
   - type: MUTON_GOG.PCK
     subX: 32
@@ -138,10 +138,10 @@ extraSprites:
     height: 1632
     files:
       0: Resources/Vanilla/MUTON.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/MUTON_gibs.png # yellow
-      316: Resources/Vanilla/MUTON_gibs.png
-      324: Resources/Vanilla/MUTON_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/MUTON_gibs.png # yellow
+      336: Resources/Vanilla/MUTON_gibs.png
+      344: Resources/Vanilla/MUTON_gibs.png
 
   - type: CELATID_GOG.PCK
     subX: 32
@@ -150,10 +150,10 @@ extraSprites:
     height: 160
     files:
       0: Resources/Vanilla/CELATID.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/CELATID_gibs.png # blue
-      316: Resources/Vanilla/CELATID_gibs.png
-      324: Resources/Vanilla/CELATID_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/CELATID_gibs.png # blue
+      336: Resources/Vanilla/CELATID_gibs.png
+      344: Resources/Vanilla/CELATID_gibs.png
 
   - type: ETHEREAL_GOG.PCK
     subX: 32
@@ -162,8 +162,8 @@ extraSprites:
     height: 400
     files:
       0: Resources/Vanilla/ETHEREAL.PNG
-      300: Resources/Vanilla/XCOM_0_normal.PNG
-      308: Resources/Vanilla/ETHEREAL_gibs.png # yellow
-      316: Resources/Vanilla/ETHEREAL_gibs.png
-      324: Resources/Vanilla/ETHEREAL_gibs.png
+      320: Resources/Vanilla/XCOM_0_normal.PNG
+      328: Resources/Vanilla/ETHEREAL_gibs.png # yellow
+      336: Resources/Vanilla/ETHEREAL_gibs.png
+      344: Resources/Vanilla/ETHEREAL_gibs.png
 
