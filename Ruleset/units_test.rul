@@ -1,0 +1,104 @@
+units:
+  - type: STR_AQUATOID_SOLDIER
+    stats:
+      health: 1
+  - type: STR_AQUATOID_SQUAD_LEADER
+    stats:
+      health: 1
+  - type: STR_AQUATOID_TECHNICIAN
+    stats:
+      health: 1
+  - type: STR_AQUATOID_MEDIC
+    stats:
+      health: 1
+  - type: STR_AQUATOID_NAVIGATOR
+    stats:
+      health: 1
+  - type: STR_AQUATOID_COMMANDER
+    stats:
+      health: 1
+  - type: STR_GILLMAN_SOLDIER
+    stats:
+      health: 1
+  - type: STR_GILLMAN_SQUAD_LEADER
+    stats:
+      health: 1
+  - type: STR_GILLMAN_TECHNICIAN
+    stats:
+      health: 1
+  - type: STR_GILLMAN_COMMANDER
+    stats:
+      health: 1
+  - type: STR_TASOTH_SOLDIER
+    stats:
+      health: 1
+  - type: STR_TASOTH_SQUAD_LEADER
+    stats:
+      health: 1
+  - type: STR_LOBSTERMAN_SOLDIER
+    stats:
+      health: 1
+  - type: STR_LOBSTERMAN_SQUAD_LEADER
+    stats:
+      health: 1
+  - type: STR_LOBSTERMAN_TECHNICIAN
+    stats:
+      health: 1
+  - type: STR_LOBSTERMAN_NAVIGATOR
+    stats:
+      health: 1
+  - type: STR_LOBSTERMAN_COMMANDER
+    stats:
+      health: 1
+  - type: STR_DEEP_ONE_TERRORIST
+    stats:
+      health: 1
+  - type: STR_TRISCENE_TERRORIST
+    stats:
+      health: 1
+  - type: STR_XARQUID_TERRORIST
+    stats:
+      health: 1
+  - type: STR_CALCINITE_TERRORIST
+    stats:
+      health: 1
+  - type: STR_TENTACULAT_TERRORIST
+    stats:
+      health: 1
+  - type: STR_HALLUCINOID_TERRORIST
+    stats:
+      health: 1
+  - type: STR_BIODRONE_TERRORIST
+    stats:
+      health: 1
+  - type: STR_ZOMBIE
+    stats:
+      health: 1
+    # needs more civilian types.
+  - type: MALE_CIVILIAN
+    stats:
+      health: 1
+  - type: SAILOR_CIVILIAN
+    stats:
+      health: 1
+  - type: DOCKER_CIVILIAN
+    stats:
+      health: 1
+  - type: FEMALE_CIVILIAN
+    stats:
+      health: 1
+  - type: STR_COELACANTH_GAS_CANNON
+    stats:
+      health: 1
+  - type: STR_COELACANTH_AQUA_JET
+    stats:
+      health: 1
+  - type: STR_COELACANTH_GAUSS
+    stats:
+      health: 1
+  - type: STR_DISPLACER_SONIC
+    stats:
+      health: 1
+  - type: STR_DISPLACER_PWT
+    stats:
+      health: 1

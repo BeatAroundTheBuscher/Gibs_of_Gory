@@ -43,7 +43,7 @@ extended:
             if eq damaging_type 8; # acid
               battle_game.setTag Tag.NEXT_HIT_GIBS 3;
               unit.setTag Tag.UNIT_IS_GIBBED 3;
-            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
+            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma/sonic
               battle_game.setTag Tag.NEXT_HIT_GIBS 2;
               unit.setTag Tag.UNIT_IS_GIBBED 2;
             else; # anything else
@@ -144,6 +144,12 @@ extended:
             set lowerLimit 25;
           else eq temp 10; # muton
             set lowerLimit 264;
+          else eq temp 13; # aquanauts # 256 on land # 259 underwater
+            set lowerLimit 264;
+          else eq temp 14; # gill men, lobster men, tasoths, deep ones
+            set lowerLimit 256;
+          else eq temp 15; # aquatoids
+            set lowerLimit 256;
           else; # if not known then end
             return sprite_index;
           end;

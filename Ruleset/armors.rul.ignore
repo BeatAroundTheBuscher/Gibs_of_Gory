@@ -1,7 +1,6 @@
 extended:
   tags:
     RuleArmor:
-      # FRAMES_TO_SKIP: int
       NORMAL_SPRITESHEET: int
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
