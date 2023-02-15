@@ -5,6 +5,7 @@ Ultraviolence for OpenXcom
 ## Credits
 
 Death sprites by Brain_322
+
 Scripting Help by Yankes
 
 
