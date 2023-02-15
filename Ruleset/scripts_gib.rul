@@ -113,7 +113,8 @@ extended:
           var int temp;
           var int health;
           var int startFrameOfGibSpritesheet;
-          var int deathFrames;
+          var int currentFrame;
+          var int numDeathFrames;
           var int lowerLimit;
           var ptr RuleArmor myArmor;
           var int collapsing;
@@ -126,7 +127,7 @@ extended:
           end;
 
           #civ is at 72
-          #set lowerLimit 264; # 264 is the default death animation start for deathFrames: 3 (default)
+          #set lowerLimit 264; # 264 is the default death animation start for currentFrame: 3 (default)
           myArmor.getDrawingRoutine temp;
 
           if eq temp 0; # xcom soldiers # sectoid
@@ -147,13 +148,14 @@ extended:
             return sprite_index;
           end;
 
-          unit.getTag temp Tag.UNIT_IS_GIBBED;
-          unit.getHealth health; # sanity check
-
+          unit.getHealth health;
           unit.isCollapsing collapsing;
+          myArmor.getDeathFrames numDeathFrames;
 
-          set deathFrames sprite_index; 
-          sub deathFrames lowerLimit; # find the current death frame (0, 1, 2, ...)
+          set currentFrame sprite_index; 
+          sub currentFrame lowerLimit; # find the current death frame (0, 1, 2, ...)
+
+          unit.getTag temp Tag.UNIT_IS_GIBBED;
 
           if and eq collapsing 1 le health 0;
             if eq temp 3;
@@ -165,12 +167,12 @@ extended:
             else;
               myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
             end;
-            add deathFrames startFrameOfGibSpritesheet;
-            set sprite_index deathFrames;
-          else eq collapsing 1;
+            add currentFrame startFrameOfGibSpritesheet;
+            set sprite_index currentFrame;
+          else and eq collapsing 1 gt numDeathFrames 3; # if more than the default three frames
             myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
-            add deathFrames startFrameOfGibSpritesheet;
-            set sprite_index deathFrames;            
+            add currentFrame startFrameOfGibSpritesheet;
+            set sprite_index currentFrame;            
           end;
 
           return sprite_index;

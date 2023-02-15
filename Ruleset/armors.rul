@@ -18,7 +18,7 @@ armors:
   - &STR_GOG_ARMOR
     type: STR_NONE_UC
     spriteSheet: XCOM_SOLDIER_0_GOG.PCK
-    deathFrames: 8
+    deathFrames: 3 # 8
     tags:
       NORMAL_SPRITESHEET: 300
       GIB_SPRITESHEET: 308

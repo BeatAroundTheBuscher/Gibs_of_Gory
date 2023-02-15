@@ -77,7 +77,7 @@ extraSprites:
     width: 256
     height: 400
     files:
-      0: Resources/Vanilla/CIVM.PNG
+      0: Resources/Vanilla/CIVF.PNG
       300: Resources/Vanilla/XCOM_0_normal.PNG
       308: Resources/Vanilla/XCOM_0_gibs.PNG
       316: Resources/Brain_322/human_to_ash.png
