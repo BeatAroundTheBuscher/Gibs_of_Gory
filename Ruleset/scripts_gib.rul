@@ -10,7 +10,7 @@ extended:
     BattleUnit:
       UNIT_IS_GIBBED: int
     RuleArmor:
-      NORMAL_SPRITESHEET: int
+      NORMAL_SPRITESHEET: int # for deathFrames > 3
       GIB_SPRITESHEET: int
       BURNED_SPRITESHEET: int
       GOO_SPRITESHEET: int
@@ -43,7 +43,7 @@ extended:
             if eq damaging_type 8; # acid
               battle_game.setTag Tag.NEXT_HIT_GIBS 3;
               unit.setTag Tag.UNIT_IS_GIBBED 3;
-            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma
+            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma/sonic
               battle_game.setTag Tag.NEXT_HIT_GIBS 2;
               unit.setTag Tag.UNIT_IS_GIBBED 2;
             else; # anything else
@@ -59,11 +59,11 @@ extended:
       - new: tag_item_is_gibbed
         offset: 1
         code: |
-          var int temp;
+          var int gibMode;
 
-          battle_game.getTag temp Tag.NEXT_HIT_GIBS;
-          if gt temp 0;
-            item.setTag Tag.ITEM_IS_GIBBED temp;
+          battle_game.getTag gibMode Tag.NEXT_HIT_GIBS;
+          if gt gibMode 0;
+            item.setTag Tag.ITEM_IS_GIBBED gibMode;
           end;
 
           return;
@@ -103,6 +103,8 @@ extended:
             add sprite_index RuleList.current; # mod offset
           end;
 
+          # this is sane enough to return the floor/bigob when no sprite was found at the index
+          # since the index is dependent on mod offset, this shouldn't create weird behavior
           return sprite_index;
 
 
@@ -110,69 +112,42 @@ extended:
       - new: display_gibbed
         offset: 10
         code: |
-          var int temp;
+          var int gibMode;
           var int health;
           var int startFrameOfGibSpritesheet;
           var int currentFrame;
           var int numDeathFrames;
-          var int lowerLimit;
           var ptr RuleArmor myArmor;
           var int collapsing;
 
           unit.getRuleArmor myArmor;
-          myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
+          myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
 
-          if eq startFrameOfGibSpritesheet 0;
-            return sprite_index;
-          end;
-
-          #civ is at 72
-          #set lowerLimit 264; # 264 is the default death animation start for currentFrame: 3 (default)
-          myArmor.getDrawingRoutine temp;
-
-          if eq temp 0; # xcom soldiers # sectoid
-            set lowerLimit 264;
-          else eq temp 1; # floaters
-            set lowerLimit 64;
-          else eq temp 4; # civilians # ethereal
-            set lowerLimit 72;
-          else eq temp 6; # snakemen
-            set lowerLimit 96;
-          else eq temp 7; # chryssalid
-            set lowerLimit 224;
-          else eq temp 9; # celatid
-            set lowerLimit 25;
-          else eq temp 10; # muton
-            set lowerLimit 264;
-          else; # if not known then end
+          if eq startFrameOfGibSpritesheet 0; # if armor has no gibs then quit
             return sprite_index;
           end;
 
           unit.getHealth health;
           unit.isCollapsing collapsing;
           myArmor.getDeathFrames numDeathFrames;
+          unit.getTag gibMode Tag.UNIT_IS_GIBBED;
 
-          set currentFrame sprite_index; 
-          sub currentFrame lowerLimit; # find the current death frame (0, 1, 2, ...)
-
-          unit.getTag temp Tag.UNIT_IS_GIBBED;
-
-          if and eq collapsing 1 le health 0;
-            if eq temp 3;
+          if and gt gibMode 0 eq collapsing 1 le health 0;
+            if eq gibMode 3;
               myArmor.getTag startFrameOfGibSpritesheet Tag.GOO_SPRITESHEET;
-            else eq temp 2;
+            else eq gibMode 2;
               myArmor.getTag startFrameOfGibSpritesheet Tag.BURNED_SPRITESHEET;
-            else eq temp 1;
+            else eq gibMode 1;
               myArmor.getTag startFrameOfGibSpritesheet Tag.GIB_SPRITESHEET;
-            else;
-              myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
+            # else; # not reachable
+            #   myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
             end;
-            add currentFrame startFrameOfGibSpritesheet;
-            set sprite_index currentFrame;
-          else and eq collapsing 1 gt numDeathFrames 3; # if more than the default three frames
+            set sprite_index startFrameOfGibSpritesheet;
+            add sprite_index sprite_offset;
+          else and eq gibMode 0 eq collapsing 1 gt numDeathFrames 3; # no gibs/was stunned and more than the default three frames
             myArmor.getTag startFrameOfGibSpritesheet Tag.NORMAL_SPRITESHEET;
-            add currentFrame startFrameOfGibSpritesheet;
-            set sprite_index currentFrame;            
+            set sprite_index startFrameOfGibSpritesheet;
+            add sprite_index sprite_offset;            
           end;
 
           return sprite_index;

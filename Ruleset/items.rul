@@ -22,75 +22,32 @@ items:
 
   - type: STR_CORPSE_ARMOR
     refNode: *STR_HUMAN_CORPSE
-
-  - type: STR_CORPSE_SUIT
+  - type: STR_CORPSE_ION
     refNode: *STR_HUMAN_CORPSE
-
   - type: CIVM_CORPSE
     refNode: *STR_HUMAN_CORPSE
-
   - type: CIVF_CORPSE
     refNode: *STR_HUMAN_CORPSE
 
-  - type: STR_SECTOID_CORPSE
-    tags:
-      GIB_BIGOB: 205
-      GIB_FLOOROB: 205
-      BURNED_BIGOB: 205
-      BURNED_FLOOROB: 205
-      GOO_BIGOB: 205
-      GOO_FLOOROB: 205
+  - type: STR_AQUATOID_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now
+  - type: STR_DEEP_ONE_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now    
+  - type: STR_GILLMAN_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now  
+  - type: STR_TASOTH_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now  
+  - type: STR_CALCINITE_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now  
+  - type: STR_TENTACULAT_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now  
+  - type: STR_LOBSTERMAN_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now  
+  - type: STR_BIODRONE_CORPSE
+    refNode: *STR_HUMAN_CORPSE # for now  
 
-  - type: STR_SNAKEMAN_CORPSE
-    tags:
-      GIB_BIGOB: 205
-      GIB_FLOOROB: 205
-      BURNED_BIGOB: 205
-      BURNED_FLOOROB: 205
-      GOO_BIGOB: 205
-      GOO_FLOOROB: 205
 
-  - type: STR_ETHEREAL_CORPSE
-    tags:
-      GIB_BIGOB: 225
-      GIB_FLOOROB: 225
-      BURNED_BIGOB: 225
-      BURNED_FLOOROB: 225
-      GOO_BIGOB: 225
-      GOO_FLOOROB: 225
 
-  - type: STR_MUTON_CORPSE
-    tags:
-      GIB_BIGOB: 215
-      GIB_FLOOROB: 215
-      BURNED_BIGOB: 215
-      BURNED_FLOOROB: 215
-      GOO_BIGOB: 215
-      GOO_FLOOROB: 215
 
-  - type: STR_FLOATER_CORPSE
-    tags:
-      GIB_BIGOB: 210
-      GIB_FLOOROB: 210
-      BURNED_BIGOB: 210
-      BURNED_FLOOROB: 210
-      GOO_BIGOB: 210
-      GOO_FLOOROB: 210
 
-  - type: STR_CELATID_CORPSE
-    tags:
-      GIB_BIGOB: 220
-      GIB_FLOOROB: 220
-      BURNED_BIGOB: 220
-      BURNED_FLOOROB: 220
-      GOO_BIGOB: 220
-      GOO_FLOOROB: 220
 
-  - type: STR_CHRYSSALID_CORPSE
-    tags:
-      GIB_BIGOB: 205
-      GIB_FLOOROB: 205
-      BURNED_BIGOB: 205
-      BURNED_FLOOROB: 205
-      GOO_BIGOB: 205
-      GOO_FLOOROB: 205
