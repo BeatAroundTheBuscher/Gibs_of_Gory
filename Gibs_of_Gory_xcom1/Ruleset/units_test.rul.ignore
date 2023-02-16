@@ -1,3 +1,12 @@
+extended:
+  tags:
+    RuleItem:
+      DAMAGETYPE_OVERRIDE: int
+
+items:
+  - type: STR_PISTOL_CLIP
+    tags: 
+      DAMAGETYPE_OVERRIDE: 5
 units:
   - type: STR_TANK_CANNON
     stats:

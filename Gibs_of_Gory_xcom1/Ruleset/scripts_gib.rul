@@ -21,15 +21,17 @@ extended:
       BURNED_FLOOROB: int
       GOO_BIGOB: int
       GOO_FLOOROB: int
+      DAMAGETYPE_OVERRIDE: int
 
 
   scripts:
     damageUnit:
-      - new: next_hit_gibs
+      - new: GOG_dU_next_hit_gibs
         offset: 1
         code: |
           var int health;
           var int maxHealth;
+          var int gibDamageType;
 
           battle_game.setTag Tag.NEXT_HIT_GIBS 0; # sanity check
 
@@ -39,11 +41,16 @@ extended:
           mul maxHealth -1;
           sub health to_health;
 
+          damaging_item.getTag gibDamageType Tag.DAMAGETYPE_OVERRIDE;
+          if eq gibDamageType 0;
+            set gibDamageType damaging_type;
+          end;
+
           if le health maxHealth;
-            if eq damaging_type 8; # acid
+            if eq gibDamageType 8; # acid
               battle_game.setTag Tag.NEXT_HIT_GIBS 3;
               unit.setTag Tag.UNIT_IS_GIBBED 3;
-            else or eq damaging_type 2 eq damaging_type 5; # incendiary or plasma/sonic
+            else or eq gibDamageType 2 eq gibDamageType 5; # incendiary or plasma/sonic
               battle_game.setTag Tag.NEXT_HIT_GIBS 2;
               unit.setTag Tag.UNIT_IS_GIBBED 2;
             else; # anything else
@@ -56,7 +63,7 @@ extended:
 
 
     createItem:
-      - new: tag_item_is_gibbed
+      - new: GOG_cI_tag_item_is_gibbed
         offset: 1
         code: |
           var int gibMode;
@@ -70,7 +77,7 @@ extended:
 
 
     selectItemSprite:
-      - new: display_gibbed
+      - new: GOG_sIS_display_gibbed
         offset: 10
         code: |
           var int gibMode;
