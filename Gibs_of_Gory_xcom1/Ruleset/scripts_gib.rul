@@ -116,7 +116,7 @@ extended:
 
 
     selectUnitSprite:
-      - new: display_gibbed
+      - new: GOG_sUS_display_gibbed
         offset: 10
         code: |
           var int gibMode;
